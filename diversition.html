@@ -139,16 +139,20 @@
             this.message = "";
           },
           checkPrize() {
-            if (!this.userInput || this.userInput.length !== 3) {
-              this.message = "กรุณากรอกเลขลอตเตอรี่ 3 หลัก";
-              this.won = false;
-              return;
-            }
-
             const num = this.userInput.padStart(3, "0");
             const last2 = num.slice(-2);
             const r = this.result;
             const wonList = [];
+
+            if(wonList.length == 0) {
+              this.message = `กรุณากดปุ่ม "ดำเนินการสุ่มรางวัล" ก่อนตรวจสอบ`;
+              this.won = false;
+              return;
+            } else if (!this.userInput || this.userInput.length !== 3) {
+              this.message = "กรุณากรอกเลขลอตเตอรี่ 3 หลัก";
+              this.won = false;
+              return;
+            }
 
             if (num === r.firstPrize) wonList.push("รางวัลที่ 1");
             if (r.nearby.includes(num)) wonList.push("รางวัลเลขข้างเคียง");
