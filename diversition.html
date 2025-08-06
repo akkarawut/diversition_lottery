@@ -144,8 +144,8 @@
             const r = this.result;
             const wonList = [];
 
-            if(wonList.length == 0) {
-              this.message = `กรุณากดปุ่ม "ดำเนินการสุ่มรางวัล" ก่อนตรวจสอบ`;
+            if(!r.firstPrize) {
+              this.message = `กรุณากดปุ่ม "ดำเนินการสุ่มรางวัล" ก่อนตรวจรางวัล`;
               this.won = false;
               return;
             } else if (!this.userInput || this.userInput.length !== 3) {
@@ -160,7 +160,7 @@
             if (last2 === r.last2Digits) wonList.push("รางวัลเลขท้าย 2 ตัว");
 
             if (wonList.length > 0) {
-              this.message = `${num} ถูกรางวัล: ${wonList.join(" และถูกรางวัล")}`;
+              this.message = `${num} ถูก${wonList.join(" และถูก")}`;
               this.won = true;
             } else {
               this.message = `${num} ไม่ถูกรางวัลใด ๆ`;
